@@ -70,7 +70,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository{
                 statement.setString(1, usuario.getCorreoElectronico());
                 statement.setString(2, usuario.getNombre());
                 statement.setString(3, usuario.getApellido());
-                statement.setInt(5, usuario.getEstado());
+                statement.setInt(4, usuario.getEstado());
                 return statement;
             };
             jdbcTemplate.update(creator, keyHolder);
@@ -78,7 +78,7 @@ public class UsuarioRepositoryImpl implements UsuarioRepository{
             usuario.setIdUsuario(idUsuario);
             return usuario;
         } catch (Exception e) {
-            log.error("Ha ocurrido el siguiente error: ", e.getMessage());
+            log.error("Ha ocurrido el siguiente error: {}", e.getMessage());
             return Usuario.builder().build();
         }
     }
