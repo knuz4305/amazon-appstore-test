@@ -11,4 +11,5 @@ public interface ComentarioRepository {
     void eliminaComentario(Integer idComentario);
     Optional<Comentario> buscaComentarioPorId(Integer idComentario);
     List<Comentario> comentarios();
+    List<Comentario> comentariosByIdAplicacion(Integer idAplicacion);
 }

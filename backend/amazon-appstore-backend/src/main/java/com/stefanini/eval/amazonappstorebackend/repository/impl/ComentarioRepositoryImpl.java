@@ -28,6 +28,8 @@ public class ComentarioRepositoryImpl implements ComentarioRepository{
     private static final String INSERT = "INSERT INTO COMENTARIO (ID_APLICACION, ID_USUARIO, DESCRIPCION, FECHA_REGISTRO, ESTADO, CALIFICACION ) VALUES (?,?,?,?,?,?);";
     private static final String UPDATE = "UPDATE COMENTARIO SET DESCRIPCION =?, ESTADO=?, CALIFICACION =? WHERE ID_COMENTARIO =? AND ID_APLICACION =? AND ID_USUARIO =?;";
     private static final String DELETE = "DELETE FROM COMENTARIO WHERE ID_COMENTARIO =? AND ID_APLICACION =? AND ID_USUARIO =?;";
+
+    private static final String SELECT_ALL_ID_APLICACION = "SELECT ID_COMENTARIO, ID_APLICACION, ID_USUARIO, DESCRIPCION, FECHA_REGISTRO, ESTADO, CALIFICACION FROM COMENTARIO WHERE ID_APLICACION = ?";
     
     private final JdbcTemplate jdbcTemplate;
 
@@ -107,6 +109,14 @@ public class ComentarioRepositoryImpl implements ComentarioRepository{
         }
     }
 
-        
+    @Override
+    public List<Comentario> comentariosByIdAplicacion(Integer idAplicacion) {
+        try {
+            return jdbcTemplate.query(SELECT_ALL_ID_APLICACION, new ComentarioMapper(), idAplicacion);
+        } catch (Exception e) {
+            log.error("Ha ocurrido el siguiente error: ", e.getMessage());
+            return new ArrayList<>();
+        }
+    }
 
 }
