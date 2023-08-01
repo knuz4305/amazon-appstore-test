@@ -22,8 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Repository
 public class AplicacionRepositoryImpl implements AplicacionRepository{
 
-    private static final String SELECT_ALL = "SELECT ID_APLICACION, NOMBRE, DESCRIPCION, COSTO, CALIFICACION_ACTUAL, ID_CATEGORIA, VERSION, RUTA_IMAGEN_PREVIA, RUTA_IMAGEN_ICONO";
-    private static final String SELECT_BY_ID = "SELECT ID_APLICACION, NOMBRE, DESCRIPCION, COSTO, CALIFICACION_ACTUAL, ID_CATEGORIA, VERSION, RUTA_IMAGEN_PREVIA, RUTA_IMAGEN_ICONO WHERE ID_APLICACION =?;";
+    private static final String SELECT_ALL = "SELECT ID_APLICACION, NOMBRE, DESCRIPCION, COSTO, CALIFICACION_ACTUAL, ID_CATEGORIA, VERSION_APP, RUTA_IMAGEN_PREVIA, RUTA_IMAGEN_ICONO FROM APLICACION;";
+    private static final String SELECT_BY_ID = "SELECT ID_APLICACION, NOMBRE, DESCRIPCION, COSTO, CALIFICACION_ACTUAL, ID_CATEGORIA, VERSION_APP, RUTA_IMAGEN_PREVIA, RUTA_IMAGEN_ICONO FROM APLICACION WHERE ID_APLICACION =?;";
     private static final String INSERT = "INSERT INTO APLICACION  (NOMBRE, DESCRIPCION, COSTO, CALIFICACION_ACTUAL, ID_CATEGORIA, VERSION, RUTA_IMAGEN_PREVIA, RUTA_IMAGEN_ICONO) VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
     private static final String UPDATE = "UPDATE APLICACION  SET NOMBRE=?, DESCRIPCION =?, COSTO =?, CALIFICACION_ACTUAL = ?, ID_CATEGORIA = ?, VERSION = ?, RUTA_IMAGEN_PREVIA =?, RUTA_IMAGEN_ICONO=? WHERE ID_APLICACION =?;";
     private static final String DELETE = "DELETE FROM APLICACION WHERE ID_APLICACION =?;";
@@ -59,7 +59,7 @@ public class AplicacionRepositoryImpl implements AplicacionRepository{
         try {
             return jdbcTemplate.query(SELECT_ALL, new AplicacionMapper());
         } catch (Exception e) {
-            log.error("Ha ocurrido el siguiente error: ", e.getMessage());
+            log.error("Ha ocurrido el siguiente error: {}", e.getMessage());
             return new ArrayList<>();
         }
     }

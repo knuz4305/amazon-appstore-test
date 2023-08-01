@@ -23,7 +23,7 @@ public class AplicacionMapper implements RowMapper<Aplicacion>{
                         .idCategoria(rs.getInt("ID_CATEGORIA"))
                         .version(rs.getString("VERSION_APP"))
                         .rutaImagenPrevia(rs.getString("RUTA_IMAGEN_PREVIA"))
-                        .rutaImagenIcono(rs.getString("RUTA_IMAGEN_ICON"))
+                        .rutaImagenIcono(rs.getString("RUTA_IMAGEN_ICONO"))
                         .build();
     }
     
